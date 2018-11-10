@@ -1,0 +1,99 @@
+
+<!DOCTYPE html> <!-- Important stuff -->
+<html lang="en">
+
+<head>
+	<!-- Chapter 8 GIT 418
+		 Author: Dylan Lucht 
+		 Filename: index.html
+	-->
+	
+	<title>Fire Emblem Games</title>
+	<meta charset="utf-8">
+	<link href="fireemblem.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="modernizr.custom.05819.js"></script> <!-- Just some standard things I paste at the start of every code -->
+	
+</head>
+
+
+<body>
+ <!-- make it look nicer -->
+	<div id="wrapper">
+		<header>
+			<a href="index.html"><img src="fireemblemlogo.png" alt="logo" class="logo">
+			</a>
+
+		</header>
+			<!-- A litte bit of flavor --> 
+		<h1>Make a choice</h1><br>
+		<section>    
+      <caption>Make sure you stay safe!</caption>
+
+      <h2>Know what other people can see easily about you</h2>
+      <!-- placeholders for javascript to fill -->
+      <ul id="systeminfo">
+        <li id="appname"></li><br>
+        <li id="appversion"></li><br>
+        <li id="height"></li><br>
+        <li id="online"></li><br>
+        <li id="platform"></li><br>
+        <li id="userAgent"></li><br>
+        <li id="longitude"></li><br>
+        <li id="latitude"></li><br>
+        <li id="demo"></li><br>
+
+      
+      </ul>        
+      <!-- need to run something to ask the user for their location -->
+      <button type="button" id="clickme" value="clickme" onclick="geoTest();" >Click me to geolocate</button>
+
+      </section>    
+      <p>Did this surprise you at all? We at Fire Emblem Primer want to keep you safe when you search the web and have gathered a few helpful links about web security that can help keep you safe.</p>
+      <a href="https://www.grahamcluley.com/password-help-desk/">Why you should never give out your password.</a><br><br>
+      <p> This article talks about how someone contacting you directly to ask for a password is almost always a scammer. Do not give out your password to anyone except those you trust</p>
+      <a href="https://nakedsecurity.sophos.com/2011/06/03/facebook-phishing-spot-the-difference/">Facebook phishing scam.</a><br><br>
+      <p> This link shows about a less common scam where an ad or message will redirect you to a fake login page. Always make sure you have the right site before you log in.</p>
+      <a href="https://www.lifewire.com/how-to-spot-an-online-scam-2487310">How to spot an online scam.</a>
+      <p> This page talks about several commonalities between internet scams and should help you spot scams.</p><br>
+
+    <footer>
+      Copyright &copy; Nintendo 1990
+    </footer>
+
+  </div>
+
+<script>  
+//This is to ask the user for their location
+function geoTest(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(createDirections, fail, {timeout: 10000});
+  } else{
+    //If they refuse.
+    fail();
+  }
+}
+//this
+function createDirections(position){
+ //this is to output the location so people can see it
+  document.getElementById("latitude").innerHTML = "Your latitude is " + position.coords.latitude;
+  document.getElementById("longitude").innerHTML = "Your longitude is " + position.coords.longitude;
+}
+function fail(){
+  console.log("Geolocation information not available or not authorized");
+}
+//old assignment security data
+ document.getElementById("appname").innerHTML = "Web Broswer name: " +navigator.appName;
+ document.getElementById("appversion").innerHTML = "App Version name: " +navigator.appVersion;
+ document.getElementById("height").innerHTML = "Your Screen height is: " +screen.height + "px";
+ document.getElementById("online").innerHTML = "You are looking at this page online: " + navigator.onLine;
+ document.getElementById("platform").innerHTML = "User's platform: " +navigator.platform;
+ document.getElementById("userAgent").innerHTML = "User agent: " +navigator.userAgent;
+
+
+
+
+</script>
+</body>
+
+</html>
